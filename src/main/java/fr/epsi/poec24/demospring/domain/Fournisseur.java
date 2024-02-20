@@ -6,19 +6,19 @@ import java.util.Objects;
 public class Fournisseur implements Serializable {
 
     private int id;
-    private String nom;
+    private String raisonSociale;
 
     public Fournisseur() {
         this(0, "");
     }
 
-    public Fournisseur(String nom) {
-        this(0, nom);
+    public Fournisseur(String raisonSociale) {
+        this(0, raisonSociale);
     }
 
-    public Fournisseur(int id, String nom) {
+    public Fournisseur(int id, String raisonSociale) {
         this.id = id;
-        this.nom = nom;
+        this.raisonSociale = raisonSociale;
     }
 
     public int getId() {
@@ -29,19 +29,19 @@ public class Fournisseur implements Serializable {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getRaisonSociale() {
+        return raisonSociale;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setRaisonSociale(String raisonSociale) {
+        this.raisonSociale = raisonSociale;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Fournisseur{");
         sb.append("id=").append(id);
-        sb.append(", nom='").append(nom).append('\'');
+        sb.append(", nom='").append(raisonSociale).append('\'');
         sb.append('}');
         return sb.toString();
     }

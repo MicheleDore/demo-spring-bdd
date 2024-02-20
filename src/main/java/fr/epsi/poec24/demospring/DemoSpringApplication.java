@@ -69,14 +69,14 @@ public class DemoSpringApplication implements CommandLineRunner {
         int nb = jdbcTemplate.update(deleteQuery);
         System.out.println("STAT : "+nb);*/
 
-        System.out.println("**************************************");
+        /*System.out.println("**************************************");
         System.out.println("****Bienvenue dans notre super App****");
         System.out.println("**************************************");
         System.out.println("* Merci de vous loguer...");
         System.out.print("* Login : ");
         String login = sc.nextLine();
         System.out.print("* Mot de passe : ");
-        String pwd = sc.nextLine();
+        String pwd = sc.nextLine();*/
 
         //Requête non sécurisée
 //        String loginQuery = "SELECT login FROM utilisateur WHERE login = '%s' AND mdp = '%s'";
@@ -103,12 +103,10 @@ public class DemoSpringApplication implements CommandLineRunner {
                 jdbcTemplate.queryForObject(countQuery, Integer.class));
 
 
-        String findAllFournisseursQuery = "SELECT * FROM fournisseur";
+        String findAllFournisseursQuery = "SELECT id, nom AS raisonSociale FROM fournisseur";
         List<Fournisseur> mesFournisseurs = jdbcTemplate.query(findAllFournisseursQuery,
                 new BeanPropertyRowMapper<>(Fournisseur.class));
         mesFournisseurs.forEach(System.out::println);
-        for(Fournisseur item : mesFournisseurs) {
-            System.out.println(item);
-        }
+
     }
 }
