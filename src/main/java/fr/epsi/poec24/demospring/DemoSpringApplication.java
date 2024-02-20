@@ -1,10 +1,12 @@
 package fr.epsi.poec24.demospring;
 
 import fr.epsi.poec24.demospring.controller.HelloController;
+import fr.epsi.poec24.demospring.domain.Fournisseur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -84,7 +86,7 @@ public class DemoSpringApplication implements CommandLineRunner {
 //        List<String> logins = jdbcTemplate.queryForList(securedLoginQuery, String.class, login, pwd);
 
         //Requête sécurisée avec des paramètres nommés à la place des ?
-        String loginQuery = "SELECT login FROM utilisateur WHERE login = :login AND mdp = :password";
+        /*String loginQuery = "SELECT login FROM utilisateur WHERE login = :login AND mdp = :password";
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("password", pwd);
         parameterSource.addValue("login", login);
@@ -94,6 +96,19 @@ public class DemoSpringApplication implements CommandLineRunner {
             System.out.println("* Bienvenue à toi : "+logins.get(0));
         } else {
             System.out.println("* Erreur d'authentification... merci de recommencer !");
+        }*/
+
+        String countQuery = "SELECT count(*) FROM utilisateur";
+        System.out.println("Le nombre d'utilisateurs dans la table est :" +
+                jdbcTemplate.queryForObject(countQuery, Integer.class));
+
+
+        String findAllFournisseursQuery = "SELECT * FROM fournisseur";
+        List<Fournisseur> mesFournisseurs = jdbcTemplate.query(findAllFournisseursQuery,
+                new BeanPropertyRowMapper<>(Fournisseur.class));
+        mesFournisseurs.forEach(System.out::println);
+        for(Fournisseur item : mesFournisseurs) {
+            System.out.println(item);
         }
     }
 }
