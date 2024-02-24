@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8"/>
+        <link rel="icon" data-th-href="@{/img/epsi.png}" sizes="32x32"/>
+        <link rel="stylesheet" data-th-href="@{/css/layout.css}"/>
+        <link rel="stylesheet" data-th-href="@{/css/general.css}"/>
+        <link rel="stylesheet" data-th-href="@{/css/demo-table.css}"/>
+
+        <title>Démo : Liste des fournisseurs</title>
+    </head>
+    <body>
+        <header>
+            <h1 id="nav-title">
+                <a href="/">Démo : Home - E-Commerce</a>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="/fournisseurs">Fournisseurs</a></li>
+                    <li><a href="/articles">Articles</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>La liste des fournisseurs</h1>
+            <section>
+                <a class="action" href="fournisseurs/creer">Ajouter un fournisseur</a>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-th-each="item : ${fournisseurs}">
+                            <td data-th-text="${item.id}"></td>
+                            <td data-th-text="${item.raisonSociale}"></td>
+                            <td>
+                                <a data-th-href="@{/fournisseurs/{id}/edition(id=${item.id})}">Modifier</a>
+                                <a data-th-href="@{/fournisseurs/{id}/suppression(id=${item.id})}">Supprimer</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; EPSI POEC - Tous droits réservés</p>
+        </footer>
+    </body>
+</html>
