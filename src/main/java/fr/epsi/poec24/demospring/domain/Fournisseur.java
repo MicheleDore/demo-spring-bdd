@@ -1,11 +1,19 @@
 package fr.epsi.poec24.demospring.domain;
 
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@Table(name = "fournisseur")
 public class Fournisseur implements Serializable {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Integer id;
+    @Column(name = "NOM")
     private String raisonSociale;
 
     public Fournisseur() {
@@ -21,11 +29,11 @@ public class Fournisseur implements Serializable {
         this.raisonSociale = raisonSociale;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
