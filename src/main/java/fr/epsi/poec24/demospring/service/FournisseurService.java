@@ -22,18 +22,18 @@ public class FournisseurService {
     }
 
     public Fournisseur create(Fournisseur fournisseur) {
-        return dao.create(fournisseur);
+        return dao.save(fournisseur);
     }
 
     public void deleteById(int id) {
         dao.deleteById(id);
     }
 
-    public Object findById(int id) {
-        return dao.findById(id);
+    public Fournisseur findById(int id) {
+        return dao.findById(id).orElse(null);
     }
 
     public void update(Fournisseur fournisseur) {
-        dao.update(fournisseur);
+        dao.save(fournisseur);
     }
 }
